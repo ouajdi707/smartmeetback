@@ -1,26 +1,40 @@
-package tn.esprit.examen.Smartmeet.Controllers.GhanemRidene;
+package tn.esprit.examen.Smartmeet.controllers.GhanemRidene;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.examen.Smartmeet.Services.GhanemRidene.ISponsorService;
+import tn.esprit.examen.Smartmeet.Services.GhanemRidene.SponsorService;
 import tn.esprit.examen.Smartmeet.entities.GhanemRidene.Sponsor;
+import tn.esprit.examen.Smartmeet.entities.Users.Users;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/sponsors")
+@CrossOrigin(origins = "*")
 public class SponsorController {
 
     @Autowired
-    private ISponsorService sponsorService;
+    private SponsorService sponsorService;
+
+    @GetMapping("/available-users")
+    public ResponseEntity<List<Users>> getAvailableSponsorUsers() {
+        try {
+            List<Users> users = sponsorService.getAvailableSponsorUsers();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping
     public ResponseEntity<Sponsor> addSponsor(@RequestBody Sponsor sponsor) {
         try {
             Sponsor savedSponsor = sponsorService.addSponsor(sponsor);
             return new ResponseEntity<>(savedSponsor, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

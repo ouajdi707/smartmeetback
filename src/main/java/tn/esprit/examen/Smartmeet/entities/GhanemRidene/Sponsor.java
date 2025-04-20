@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import tn.esprit.examen.Smartmeet.entities.Users.Users;
 
 @Entity
 @Getter
@@ -25,4 +26,8 @@ public class Sponsor {
     
     private Boolean statut;
     private String siteWeb;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
 } 

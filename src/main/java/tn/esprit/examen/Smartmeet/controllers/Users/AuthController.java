@@ -126,7 +126,9 @@ public class AuthController {
 					roles.add(TypeUserRole.ADMIN);
 				} else if (role == TypeUserRole.USER) {
 					roles.add(TypeUserRole.USER);
-				} else {
+				}
+
+				else {
 					return ResponseEntity.badRequest().body(new MessageResponse("Error: Role " + role + " not found!"));
 				}
 			}
