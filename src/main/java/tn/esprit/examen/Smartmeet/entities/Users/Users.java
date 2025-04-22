@@ -63,19 +63,19 @@ public class Users implements Serializable {
         this.email = email;
         this.password = password;
     }
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private Set<InteractivePublication> InteractivePublications;
 
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private Set<MentalHealth> MentalHealths;
-
+    @JsonIgnore
     @ManyToMany(mappedBy="users", cascade = CascadeType.ALL)
     private Set<Event> events;
 
 
-
+    @JsonIgnore
     @ManyToMany(mappedBy="users", cascade = CascadeType.ALL)
     private Set<MonitoringRecruitment> monitoringrecruitments;
 
