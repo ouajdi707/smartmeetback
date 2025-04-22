@@ -121,14 +121,20 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+<<<<<<< Updated upstream
 =======
 
+=======
+>>>>>>> Stashed changes
         <!-- Socket.IO support -->
         <dependency>
             <groupId>com.corundumstudio.socketio</groupId>
             <artifactId>netty-socketio</artifactId>
             <version>1.7.23</version>
         </dependency>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     </dependencies>
